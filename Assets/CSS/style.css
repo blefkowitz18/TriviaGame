@@ -8,6 +8,12 @@
     font-weight: bold;
     margin-top: 2%;
 }
+.timer{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-size: 24px !important;
+}
+
 .questionBackground {
     background-color: red;
     color: white;
@@ -15,6 +21,10 @@
     font-size: 28px;
     margin-top: 4%;
     text-align: center;
+}
+
+.whiteFont{
+    color:white;
 }
 
 .answerBackground {

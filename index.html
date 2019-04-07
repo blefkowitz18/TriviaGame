@@ -11,26 +11,35 @@
             <h1 class="display-4">United States Trivia Game</h1>
         </div>
     </div>
-    <div class="questionBackground">
+    <div class="questionBackground" id="startGame">
+        <button type="button" class="whiteFont btn btn-lg">Click to Start</button>
+    </div>
+    <div class="questionBackground" id="questionDisplay">
         <div class="panel-content">
-            <div class = "timer"></div>
+            <div class = "timer">
+                <h2>Time Remaining:<span id="timer"></span></h2>
+            </div>
             <div> 
-                <p>What is your name?</p>
+                <p id="question"></p>
                 <div class="answers">
                     <div>
-                        <button type="button" class="btn btn-lg answerBackground">Zack</button>
+                        <button type="button" class="btn btn-lg answerBackground" id="answerOne"></button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-lg answerBackground">Halsey</button>
+                        <button type="button" class="btn btn-lg answerBackground" id="answerTwo"></button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-lg answerBackground">Kristofer</button>
+                        <button type="button" class="btn btn-lg answerBackground" id="answerThree"></button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-lg answerBackground">Dean</button>
+                        <button type="button" class="btn btn-lg answerBackground" id="answerFour"></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="Assets/Javascript/app.js"></script>
 </body>
