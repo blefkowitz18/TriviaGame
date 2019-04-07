@@ -1,5 +1,7 @@
 var correctAnswerValue
 var incorrectAnswer
+var number = 30;
+var intervalId;
 
 var questionOne={
     question: "Where is the southern most point of the United States?",
@@ -31,56 +33,74 @@ var questionFive={
     incorrectAnswer:["New Jersey", "Ohio", "Maine"]
 }
 
-console.log(questionFive)
+function run() {
+    clearInterval(intervalId)
+    intervalId = setInterval(decrement, 1000);
+  }
 
+function decrement() {
+    number--;
+    $("#timer").html(number);
+      if (number <= 0) {
+        stop();
+      }
+    }
+
+function stop() {
+    clearInterval(intervalId);
+    }
+  
 function startGame(){
-    $
+    questionLoad(questionOne);
+    $("#questionDisplay").show();
+    $("#startGame").hide();
 }
+
+$("#startButton").on("click", ()=> startGame());
 
 //the parameter inside the function is a placeholder for when it will be called.
 function questionLoad(question) {
-    $("#question").html(question.question)
-    correctAnswerValue = Math.floor(Math.random() * 4 + 1)
+    $("#question").html(question.question);
+    correctAnswerValue = Math.floor(Math.random() * 4 + 1);
     if(correctAnswerValue===1){
-        $("#answerOne").html(question.correctAnswer)
-        $("#answerTwo").html(question.incorrectAnswer[0])
-        $("#answerThree").html(question.incorrectAnswer[1])
-        $("#answerFour").html(question.incorrectAnswer[2])
+        $("#answerOne").html(question.correctAnswer);
+        $("#answerTwo").html(question.incorrectAnswer[0]);
+        $("#answerThree").html(question.incorrectAnswer[1]);
+        $("#answerFour").html(question.incorrectAnswer[2]);
     }
     else if(correctAnswerValue===2){
-        $("#answerTwo").html(question.correctAnswer)
-        $("#answerOne").html(question.incorrectAnswer[0])
-        $("#answerThree").html(question.incorrectAnswer[1])
-        $("#answerFour").html(question.incorrectAnswer[2])
+        $("#answerTwo").html(question.correctAnswer);
+        $("#answerOne").html(question.incorrectAnswer[0]);
+        $("#answerThree").html(question.incorrectAnswer[1]);
+        $("#answerFour").html(question.incorrectAnswer[2]);
     }
     else if(correctAnswerValue===3){
-        $("#answerThree").html(question.correctAnswer)
-        $("#answerOne").html(question.incorrectAnswer[0])
-        $("#answerTwo").html(question.incorrectAnswer[1])
-        $("#answerFour").html(question.incorrectAnswer[2])
+        $("#answerThree").html(question.correctAnswer);
+        $("#answerOne").html(question.incorrectAnswer[0]);
+        $("#answerTwo").html(question.incorrectAnswer[1]);
+        $("#answerFour").html(question.incorrectAnswer[2]);
     }
     else {
-        $("#answerFour").html(question.correctAnswer)
-        $("#answerOne").html(question.incorrectAnswer[0])
-        $("#answerTwo").html(question.incorrectAnswer[1])
-        $("#answerThree").html(question.incorrectAnswer[2])
+        $("#answerFour").html(question.correctAnswer);
+        $("#answerOne").html(question.incorrectAnswer[0]);
+        $("#answerTwo").html(question.incorrectAnswer[1]);
+        $("#answerThree").html(question.incorrectAnswer[2]);
     }
 
-    $("#answerOne").on("click", () => checkQuestion(1))
-    $("#answerTwo").on("click", () => checkQuestion(2))
-    $("#answerThree").on("click", () => checkQuestion(3))
-    $("#answerFour").on("click", () => checkQuestion(4))
+    $("#answerOne").on("click", () => checkQuestion(1));
+    $("#answerTwo").on("click", () => checkQuestion(2));
+    $("#answerThree").on("click", () => checkQuestion(3));
+    $("#answerFour").on("click", () => checkQuestion(4));
 
+    run()
     //look up lambda function javascript and describe it in comments
 }
 
-questionLoad(questionOne)
-
 function checkQuestion(checkAnswer){
     if(correctAnswerValue===checkAnswer){
-        alert("correct")
+        alert("correct");
     }
     else {
-        alert("incorrect")
+        alert("incorrect");
     }
- }
+}
