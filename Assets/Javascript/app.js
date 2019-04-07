@@ -1,6 +1,6 @@
 var correctAnswerValue
 var incorrectAnswer
-var number = 30;
+var number = 5;
 var intervalId;
 
 var questionOne={
@@ -43,6 +43,7 @@ function decrement() {
     $("#timer").html(number);
       if (number <= 0) {
         stop();
+        alert("you are wrong")
       }
     }
 
@@ -87,14 +88,17 @@ function questionLoad(question) {
         $("#answerThree").html(question.incorrectAnswer[2]);
     }
 
+    run()
+
     $("#answerOne").on("click", () => checkQuestion(1));
     $("#answerTwo").on("click", () => checkQuestion(2));
     $("#answerThree").on("click", () => checkQuestion(3));
     $("#answerFour").on("click", () => checkQuestion(4));
-
-    run()
+    
     //look up lambda function javascript and describe it in comments
+        
 }
+
 
 function checkQuestion(checkAnswer){
     if(correctAnswerValue===checkAnswer){
