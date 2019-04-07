@@ -2,18 +2,35 @@
     background-color: blue
 }
 
-.secondBackground {
+.titleBackground {
     background-color: red;
     color: white;
     font-weight: bold;
-    margin-top: 2%
+    margin-top: 2%;
 }
-.thirdBackground {
+.questionBackground {
     background-color: red;
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+    margin-top: 4%;
+    text-align: center;
+}
+
+.answerBackground {
+    background-color: blue;
     color: white;
     font-weight: bold;
     font-size: 20px;
-    margin-top: 4%
+    border: 1px solid white;
+    text-align: center !important;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    width: 50%;
+}
+button:hover{
+    background-color: white !important;
+    color: blue !important;
 }
 
 .title{
