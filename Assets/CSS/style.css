@@ -1,0 +1,22 @@
+.background{
+    background-color: blue
+}
+
+.secondBackground {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    margin-top: 2%
+}
+.thirdBackground {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 4%
+}
+
+.title{
+    color: blue;
+    text-align: center;
+}
