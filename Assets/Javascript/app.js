@@ -2,6 +2,8 @@ var correctAnswerValue
 var incorrectAnswer
 var number = 5;
 var intervalId;
+var wins;
+var losses;
 
 var questionOne={
     question: "Where is the southern most point of the United States?",
@@ -44,6 +46,7 @@ function decrement() {
       if (number <= 0) {
         stop();
         alert("you are wrong")
+        losses ++
       }
     }
 
@@ -103,8 +106,20 @@ function questionLoad(question) {
 function checkQuestion(checkAnswer){
     if(correctAnswerValue===checkAnswer){
         alert("correct");
+        wins ++
+
     }
     else {
         alert("incorrect");
+        losses ++
     }
 }
+
+
+//new screen after answers selected.
+    //timer not showing
+    //gif or picture
+    //text
+    //reload to new question
+
+//ending quiz slide with results
