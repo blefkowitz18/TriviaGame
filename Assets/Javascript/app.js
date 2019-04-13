@@ -56,7 +56,8 @@ function runAnswer(){
         }
       else{
             $("#questionDisplay").hide();
-            $("#answerScreen").hide()
+            $("#answerScreenCorrect").hide()
+            $("#answerScreenIncorrect").hide()
             $("#finalScreen").show()
             $("#wins").append(wins)
             $("#losses").append(losses)
@@ -102,7 +103,8 @@ function questionLoad(question) {
     console.log(question)
     $("#finalScreen").hide()
     $("#questionDisplay").show()
-    $("#answerScreen").hide()
+    $("#answerScreenCorrect").hide()
+    $("#answerScreenIncorrect").hide()
     $("#question").html(question.prompt);
     correctAnswerValue = Math.floor(Math.random() * 4 + 1);
     run()
@@ -149,8 +151,9 @@ function checkQuestion(checkAnswer){
     if(correctAnswerValue===checkAnswer){
         $("#questionDisplay").hide();
         $("#finalScreen").hide()
-        $("#answerScreen").show()
-        $("#answerScreen").html("You are correct.")
+        $("#answerScreenCorrect").show()
+        $("#correctImage").show()
+        $("#answerScreenCorrect").prepend("You are correct.")
         console.log("you are correct")
         wins ++
         runAnswer()
@@ -159,8 +162,9 @@ function checkQuestion(checkAnswer){
         console.log("you are incorrect");
         losses ++
         $("#questionDisplay").hide()
-        $("#answerScreen").show()
-        $("#answerScreen").html("You are Incorrect. The correct answer was " + this["question"+round].correctAnswer + ".")
+        $("#answerScreenIncorrect").show()
+        $("#incorrectImage").show()
+        $("#answerScreenIncorrect").prepend("You are Incorrect. The correct answer was " + this["question"+round].correctAnswer + ".")
         runAnswer()
     }
 }

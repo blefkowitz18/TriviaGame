@@ -52,7 +52,17 @@ button:hover{
     display: none
 }
 
-#answerScreen{
+#answerScreenCorrect{
+    display: none;
+    background: red;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 4%;
+}
+
+#answerScreenIncorrect{
+    display: none;
     background: red;
     color: white;
     font-size: 30px;
