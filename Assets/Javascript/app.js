@@ -1,39 +1,64 @@
 var correctAnswerValue
 var incorrectAnswer
-var number = 5;
+var number = 15;
+var numberAnswerScreen = 5;
 var intervalId;
 var wins;
 var losses;
+var round = 1;
 
-var questionOne={
-    question: "Where is the southern most point of the United States?",
+
+var question1={
+    prompt: "Where is the southern most point of the United States?",
     correctAnswer: "Key West",
     incorrectAnswer:["San Antonio", "San Diego", "Miami"]
 }
 
-var questionTwo={
-    question: "What is the largest state in square footage?",
+var question2={
+    prompt: "What is the largest state in square footage?",
     correctAnswer: "Alaska",
     incorrectAnswer:["Texas", "California", "Montana"]
 }
 
-var questionThree={
-    question: "Which state has a capital named Des Moines?",
+var question3={
+    prompt: "Which state has a capital named Des Moines?",
     correctAnswer: "Iowa",
     incorrectAnswer:["Delaware", "Florida", "Nebraska"]
 }
 
-var questionFour={
-    question: "Which state is Mount Rushmore located?",
+var question4={
+    prompt: "Which state is Mount Rushmore located?",
     correctAnswer: "South Dakota",
     incorrectAnswer:["North Dakota", "North Carolina", "South Carolina"]
 }
 
-var questionFive={
-    question: "Which state is Niagara Falls located?",
+var question5={
+    prompt: "Which state is Niagara Falls located?",
     correctAnswer: "New York",
     incorrectAnswer:["New Jersey", "Ohio", "Maine"]
 }
+
+function runAnswer(){
+    clearInterval(intervalId)
+    intervalId = setInterval(decrementAnswer, 1000);
+    console.log(numberAnswerScreen)
+  }
+
+  function decrementAnswer() {
+    numberAnswerScreen--;
+    round++
+      if (numberAnswerScreen <= 0) {
+        stop();
+        console.log("time is up")
+      }
+      if (round<6){
+            questionLoad(this["question" + round])
+        }
+        else{
+
+        }
+      }
+
 
 function run() {
     clearInterval(intervalId)
@@ -45,17 +70,22 @@ function decrement() {
     $("#timer").html(number);
       if (number <= 0) {
         stop();
-        alert("you are wrong")
+        console.log("you are wrong")
         losses ++
+        checkQuestion("time is up")
       }
     }
 
 function stop() {
     clearInterval(intervalId);
+    number = 15
+    numberAnswerScreen = 5
     }
   
 function startGame(){
-    questionLoad(questionOne);
+    console.log(this);
+    
+    questionLoad(this["question" + round]);
     $("#questionDisplay").show();
     $("#startGame").hide();
 }
@@ -64,8 +94,14 @@ $("#startButton").on("click", ()=> startGame());
 
 //the parameter inside the function is a placeholder for when it will be called.
 function questionLoad(question) {
-    $("#question").html(question.question);
+    console.log('called load');
+    console.log(question)
+    $("#questionDisplay").show()
+    $("#answerScreen").hide()
+    $("#question").html(question.prompt);
     correctAnswerValue = Math.floor(Math.random() * 4 + 1);
+    run()
+    
     if(correctAnswerValue===1){
         $("#answerOne").html(question.correctAnswer);
         $("#answerTwo").html(question.incorrectAnswer[0]);
@@ -91,29 +127,39 @@ function questionLoad(question) {
         $("#answerThree").html(question.incorrectAnswer[2]);
     }
 
-    run()
-
     $("#answerOne").on("click", () => checkQuestion(1));
     $("#answerTwo").on("click", () => checkQuestion(2));
     $("#answerThree").on("click", () => checkQuestion(3));
     $("#answerFour").on("click", () => checkQuestion(4));
-    
-    //look up lambda function javascript and describe it in comments
+    //A lambda function is used to pass a behavior as a value. We are passing this to the checkQuestion function.
         
 }
+$("#answerOne").on("click", stop());
+$("#answerTwo").on("click", stop());
+$("#answerThree").on("click", stop());
+$("#answerFour").on("click", stop());    
 
 
 function checkQuestion(checkAnswer){
     if(correctAnswerValue===checkAnswer){
-        alert("correct");
+        $("#questionDisplay").hide();
+        $("#answerScreen").show()
+        $("#answerScreen").html("You are correct.")
+        console.log("you are correct")
         wins ++
-
+        runAnswer()
     }
     else {
-        alert("incorrect");
+        console.log("you are incorrect");
         losses ++
+        $("#questionDisplay").hide()
+        $("#answerScreen").show()
+        $("#answerScreen").html("You are Incorrect. The correct answer was " + this["question"+round].correctAnswer)
+        runAnswer()
     }
 }
+
+
 
 
 //new screen after answers selected.
