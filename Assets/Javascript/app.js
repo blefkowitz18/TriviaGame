@@ -3,8 +3,8 @@ var incorrectAnswer
 var number = 15;
 var numberAnswerScreen = 5;
 var intervalId;
-var wins;
-var losses;
+var wins = 0;
+var losses = 0;
 var round = 1;
 
 
@@ -51,11 +51,15 @@ function runAnswer(){
         stop();
         console.log("time is up")
       }
-      if (round<6){
+     if (round<6){
             questionLoad(this["question" + round])
         }
-        else{
-
+      else{
+            $("#questionDisplay").hide();
+            $("#answerScreen").hide()
+            $("#finalScreen").show()
+            $("#wins").append(wins)
+            $("#losses").append(losses)
         }
       }
 
@@ -71,7 +75,6 @@ function decrement() {
       if (number <= 0) {
         stop();
         console.log("you are wrong")
-        losses ++
         checkQuestion("time is up")
       }
     }
@@ -88,6 +91,7 @@ function startGame(){
     questionLoad(this["question" + round]);
     $("#questionDisplay").show();
     $("#startGame").hide();
+    $("#finalScreen").hide()
 }
 
 $("#startButton").on("click", ()=> startGame());
@@ -96,6 +100,7 @@ $("#startButton").on("click", ()=> startGame());
 function questionLoad(question) {
     console.log('called load');
     console.log(question)
+    $("#finalScreen").hide()
     $("#questionDisplay").show()
     $("#answerScreen").hide()
     $("#question").html(question.prompt);
@@ -134,15 +139,16 @@ function questionLoad(question) {
     //A lambda function is used to pass a behavior as a value. We are passing this to the checkQuestion function.
         
 }
-$("#answerOne").on("click", stop());
-$("#answerTwo").on("click", stop());
-$("#answerThree").on("click", stop());
-$("#answerFour").on("click", stop());    
+        $("#answerOne").on("click", () => stop());
+        $("#answerTwo").on("click", () => stop());
+        $("#answerThree").on("click", () => stop());
+        $("#answerFour").on("click", () => stop());
 
 
 function checkQuestion(checkAnswer){
     if(correctAnswerValue===checkAnswer){
         $("#questionDisplay").hide();
+        $("#finalScreen").hide()
         $("#answerScreen").show()
         $("#answerScreen").html("You are correct.")
         console.log("you are correct")
@@ -154,10 +160,12 @@ function checkQuestion(checkAnswer){
         losses ++
         $("#questionDisplay").hide()
         $("#answerScreen").show()
-        $("#answerScreen").html("You are Incorrect. The correct answer was " + this["question"+round].correctAnswer)
+        $("#answerScreen").html("You are Incorrect. The correct answer was " + this["question"+round].correctAnswer + ".")
         runAnswer()
     }
 }
+
+
 
 
 

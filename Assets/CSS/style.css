@@ -51,3 +51,21 @@ button:hover{
 #questionDisplay{
     display: none
 }
+
+#answerScreen{
+    background: red;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 4%;
+}
+
+#finalScreen{
+    display: none;
+    background: red;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    margin-top: 4%;
+}
+
