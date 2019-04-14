@@ -165,16 +165,3 @@ function checkQuestion(checkAnswer){
     
     }
 }
-
-
-
-
-
-
-//new screen after answers selected.
-    //timer not showing
-    //gif or picture
-    //text
-    //reload to new question
-
-//ending quiz slide with results
