@@ -1,7 +1,6 @@
 var correctAnswerValue
 var incorrectAnswer
 var number = 15;
-//for answer screen time
 var intervalId;
 var wins = 0;
 var losses = 0;
@@ -142,8 +141,6 @@ $("#answerThree").on("click", () => checkQuestion(3));
 $("#answerFour").on("click", () => checkQuestion(4));
 //A lambda function is used to pass a behavior as a value. We are passing this to the checkQuestion function.
 
-
-
 function checkQuestion(checkAnswer){
     stop()
     runAnswer()
@@ -162,6 +159,5 @@ function checkQuestion(checkAnswer){
         $("#answerScreenIncorrect").show()
         $("#incorrectImage").show()
         $("#incorrectAnswerText").html("You are Incorrect. The correct answer was " + this["question"+round].correctAnswer + ".")
-    
     }
 }
