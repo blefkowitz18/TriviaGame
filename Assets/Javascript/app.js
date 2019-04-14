@@ -1,7 +1,7 @@
 var correctAnswerValue
 var incorrectAnswer
 var number = 15;
-var numberAnswerScreen = 5;
+//for answer screen time
 var intervalId;
 var wins = 0;
 var losses = 0;
@@ -40,17 +40,12 @@ var question5={
 
 function runAnswer(){
     clearInterval(intervalId)
-    intervalId = setInterval(decrementAnswer, 1000);
-    console.log(numberAnswerScreen)
+    intervalId = setInterval(decrementAnswer, 2500);
+ 
   }
 
   function decrementAnswer() {
-    numberAnswerScreen--;
     round++
-      if (numberAnswerScreen <= 0) {
-        stop();
-        console.log("time is up")
-      }
      if (round<6){
             questionLoad(this["question" + round])
         }
@@ -59,8 +54,15 @@ function runAnswer(){
             $("#answerScreenCorrect").hide()
             $("#answerScreenIncorrect").hide()
             $("#finalScreen").show()
-            $("#wins").append(wins)
-            $("#losses").append(losses)
+            $("#wins").html(wins)
+            $("#losses").html(losses)
+            stop()
+            $("#reset").on("click", function(){
+                wins = 0
+                losses = 0
+                round = 1
+                startGame()
+            })
         }
       }
 
@@ -83,7 +85,6 @@ function decrement() {
 function stop() {
     clearInterval(intervalId);
     number = 15
-    numberAnswerScreen = 5
     }
   
 function startGame(){
@@ -133,39 +134,35 @@ function questionLoad(question) {
         $("#answerTwo").html(question.incorrectAnswer[1]);
         $("#answerThree").html(question.incorrectAnswer[2]);
     }
-
-    $("#answerOne").on("click", () => checkQuestion(1));
-    $("#answerTwo").on("click", () => checkQuestion(2));
-    $("#answerThree").on("click", () => checkQuestion(3));
-    $("#answerFour").on("click", () => checkQuestion(4));
-    //A lambda function is used to pass a behavior as a value. We are passing this to the checkQuestion function.
         
 }
-        $("#answerOne").on("click", () => stop());
-        $("#answerTwo").on("click", () => stop());
-        $("#answerThree").on("click", () => stop());
-        $("#answerFour").on("click", () => stop());
+$("#answerOne").on("click", () => checkQuestion(1));
+$("#answerTwo").on("click", () => checkQuestion(2));
+$("#answerThree").on("click", () => checkQuestion(3));
+$("#answerFour").on("click", () => checkQuestion(4));
+//A lambda function is used to pass a behavior as a value. We are passing this to the checkQuestion function.
+
 
 
 function checkQuestion(checkAnswer){
+    stop()
+    runAnswer()
+    $("#questionDisplay").hide()
+    $("#finalScreen").hide()
     if(correctAnswerValue===checkAnswer){
-        $("#questionDisplay").hide();
-        $("#finalScreen").hide()
         $("#answerScreenCorrect").show()
         $("#correctImage").show()
-        $("#answerScreenCorrect").prepend("You are correct.")
+        $("#correctAnswerText").html("You are correct.")
         console.log("you are correct")
         wins ++
-        runAnswer()
     }
     else {
         console.log("you are incorrect");
         losses ++
-        $("#questionDisplay").hide()
         $("#answerScreenIncorrect").show()
         $("#incorrectImage").show()
-        $("#answerScreenIncorrect").prepend("You are Incorrect. The correct answer was " + this["question"+round].correctAnswer + ".")
-        runAnswer()
+        $("#incorrectAnswerText").html("You are Incorrect. The correct answer was " + this["question"+round].correctAnswer + ".")
+    
     }
 }
 

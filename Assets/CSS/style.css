@@ -79,3 +79,19 @@ button:hover{
     margin-top: 4%;
 }
 
+.picture {
+    margin: 10px;
+    border: 2px solid white;
+}
+
+.pictureTwo {
+    margin: 10px;
+    border: 2px solid blue;
+}
+
+#reset {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: blue;
+    color: white;
+}
